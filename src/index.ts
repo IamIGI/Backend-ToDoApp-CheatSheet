@@ -9,6 +9,7 @@ dotenv.config();
 const PORT = process.env.PORT || 5000;
 
 //Connect to MongoDB;
+mongoose.set('strictQuery', false);
 connectDB();
 const app = express();
 app.use(express.urlencoded({ extended: false }));
