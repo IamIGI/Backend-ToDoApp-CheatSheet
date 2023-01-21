@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 export interface ToDoObject {
     userName: string;
     title: string;
-    date: string;
+    date?: string;
 }
 
 export interface ToDoDocument extends ToDoObject, mongoose.Document {}
