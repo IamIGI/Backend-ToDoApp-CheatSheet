@@ -14,6 +14,9 @@ const app = express();
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
+//ApiRoutes
+app.use('/todolist', require('./routes/api/todoList'));
+
 // handle UNKNOWN URL REQUESTS
 app.all('*', (req: Request, res: Response) => {
     res.status(404);
