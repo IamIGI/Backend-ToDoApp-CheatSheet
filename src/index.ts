@@ -3,6 +3,8 @@ import express, { Request, Response } from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/dbConnection';
 import mongoose from 'mongoose';
+import cors from 'cors';
+import corsOptions from './config/corsOptions';
 
 dotenv.config();
 
@@ -12,6 +14,9 @@ const PORT = process.env.PORT || 5000;
 mongoose.set('strictQuery', false);
 connectDB();
 const app = express();
+//CORS configuration
+app.use(cors(corsOptions));
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
