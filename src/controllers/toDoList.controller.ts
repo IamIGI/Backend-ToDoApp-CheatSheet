@@ -22,6 +22,7 @@ const addToDo = async (req: Request, res: Response) => {
     };
 
     const result = await toDoListServices.saveToDoItem(object);
+    console.log(result);
     return res.status(result.status).json({ message: result.message, toDoId: result?.ToDoId, reason: result?.reason });
 };
 
@@ -39,6 +40,7 @@ const editToDo = async (req: Request, res: Response) => {
     const { id, title } = req.body;
 
     const result = await toDoListServices.edit(id, title);
+    console.log(result);
     return res.status(result.status).json({ message: result.message, reason: result?.reason });
 };
 
