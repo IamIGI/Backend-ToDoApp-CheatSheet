@@ -37,9 +37,9 @@ const deleteToDo = async (req: Request, res: Response) => {
 
 const editToDo = async (req: Request, res: Response) => {
   console.log(req.originalUrl);
-  const { id, title } = req.body;
+  const { id, title, userName } = req.body;
 
-  const result = await toDoListServices.edit(id, title);
+  const result = await toDoListServices.edit(id, title, userName);
   console.log(result);
   return res.status(result.status).json({ message: result.message, reason: result?.reason });
 };
