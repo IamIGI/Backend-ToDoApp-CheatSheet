@@ -46,13 +46,14 @@ async function deleteOne(id: string): Promise<{ status: number; message: string;
 /** edit item from list */
 async function edit(
   id: string,
-  title: string
+  title: string,
+  userName: string
 ): Promise<{ status: number; message: string; id?: string; reason?: unknown }> {
   const date = currentDate.getDate();
 
   try {
     const isExists = await ToDoModel.findOne({ _id: id }).exec();
-    if (!isExists) return { status: 404, message: 'Could not find given ToDo item' };
+    if (!isExists) return { status: 400, message: 'Could not find given ToDo item' };
 
     await ToDoModel.updateOne(
       { _id: id },
@@ -60,6 +61,7 @@ async function edit(
         $set: {
           title,
           date,
+          userName,
         },
       }
     );
