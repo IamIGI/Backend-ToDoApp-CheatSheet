@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import toDoListServices from '../services/toDoList.services';
-import currentDate from '../utils/currentDate';
 
 const getList = async (req: Request, res: Response) => {
   console.log(req.originalUrl);
@@ -23,7 +22,11 @@ const addToDo = async (req: Request, res: Response) => {
 
   const result = await toDoListServices.saveToDoItem(object);
   console.log(result);
-  return res.status(result.status).json({ message: result.message, toDoId: result?.ToDoId, reason: result?.reason });
+  return res.status(result.status).json({
+    message: result.message,
+    toDoId: result?.ToDoId,
+    reason: result?.reason,
+  });
 };
 
 const deleteToDo = async (req: Request, res: Response) => {
@@ -32,7 +35,9 @@ const deleteToDo = async (req: Request, res: Response) => {
 
   const result = await toDoListServices.deleteOne(id);
   console.log(result);
-  return res.status(result.status).json({ message: result.message, reason: result?.reason });
+  return res
+    .status(result.status)
+    .json({ message: result.message, reason: result?.reason });
 };
 
 const editToDo = async (req: Request, res: Response) => {
@@ -41,7 +46,9 @@ const editToDo = async (req: Request, res: Response) => {
 
   const result = await toDoListServices.edit(id, title, userName);
   console.log(result);
-  return res.status(result.status).json({ message: result.message, reason: result?.reason });
+  return res
+    .status(result.status)
+    .json({ message: result.message, reason: result?.reason });
 };
 
 const editIsDone = async (req: Request, res: Response) => {
@@ -50,7 +57,9 @@ const editIsDone = async (req: Request, res: Response) => {
 
   const result = await toDoListServices.editIsDone(id);
   console.log(result);
-  return res.status(result.status).json({ message: result.message, reason: result?.reason });
+  return res
+    .status(result.status)
+    .json({ message: result.message, reason: result?.reason });
 };
 
 export default { getList, addToDo, deleteToDo, editToDo, editIsDone };
